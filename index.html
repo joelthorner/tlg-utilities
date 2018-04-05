@@ -2782,7 +2782,10 @@
 				symbol = symbol.replace('aria-hidden="true" ', '');
 				symbol = symbol.replace('<svg', '<symbol');
 				symbol = symbol.replace('/svg>', '/symbol>');
+				symbol = symbol.replace('  ', ' ');
 				symbol = symbol.replace('xmlns="http://www.w3.org/2000/svg" ', '');
+				var viewBox = $symb = $(symbol).attr('viewBox');
+				symbol = symbol.replace(new RegExp('viewBox="[a-zA-Z\\-0-9\\s]{1,}"',"g"), '');
 
 				$('#is-the-modal-countdown-ninonino').find('#symbolF').val(
 					symbol
@@ -2790,7 +2793,7 @@
 				var $symb = $(symbol);
 				// console.log(viewbox);
 				$('#is-the-modal-countdown-ninonino').find('#useF').val(
-					'<svg viewBox="'+$symb.attr('viewBox')+'" class="icon"><use xlink:href="#'+$symb.attr('id')+'"></use></svg>'
+					'<svg viewBox="'+viewBox+'" class="icon"><use xlink:href="#'+$symb.attr('id')+'"></use></svg>'
 					);
 			});
 
